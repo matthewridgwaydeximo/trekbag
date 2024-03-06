@@ -1,12 +1,30 @@
 import Button from "./Button";
 
+type ButtonGroupOptionsType = {
+    text: string;
+}[];
+
+const ButtonGroupOptions: ButtonGroupOptionsType = [
+    {
+        text: "Mark all as complete",
+    },
+    {
+        text: "Mark all as incomplete",
+    },
+    {
+        text: "Reset to initial",
+    },
+    {
+        text: "Remove all items",
+    },
+];
+
 export default function ButtonGroup() {
     return (
         <section className="button-group">
-            <Button>Mark all as complete</Button>
-            <Button>Mark all as incomplete</Button>
-            <Button>Reset to initial</Button>
-            <Button>Remove all items</Button>
+            {ButtonGroupOptions.map(({ text }) => (
+                <Button key={text}>{text}</Button>
+            ))}
         </section>
     );
 }
