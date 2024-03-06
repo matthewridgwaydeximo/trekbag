@@ -4,7 +4,7 @@ type ButtonGroupOptionsType = {
     text: string;
 }[];
 
-const ButtonGroupOptions: ButtonGroupOptionsType = [
+const buttonGroupOptions: ButtonGroupOptionsType = [
     {
         text: "Mark all as complete",
     },
@@ -22,7 +22,7 @@ const ButtonGroupOptions: ButtonGroupOptionsType = [
 export default function ButtonGroup() {
     return (
         <section className="button-group">
-            {ButtonGroupOptions.map(({ text }) => (
+            {buttonGroupOptions.map(({ text }) => (
                 <Button key={text}>{text}</Button>
             ))}
         </section>
