@@ -1,9 +1,11 @@
 import { ComponentProps } from "react";
 
-type ButtonProps = ComponentProps<"button"> & {
+type ButtonAdditionalProps = {
     isPrimary?: boolean;
     children: React.ReactNode;
 };
+
+type ButtonProps = ComponentProps<"button"> & ButtonAdditionalProps;
 
 export default function Button({ isPrimary = false, children, ...props }: ButtonProps) {
     return (
