@@ -1,23 +1,10 @@
 import Button from "./Button";
+import { TButton } from "../lib/types";
+import { BUTTON_GROUP_OPTIONS_TYPE } from "../lib/constants";
 
-type ButtonGroupOptionsType = {
-    text: string;
-}[];
+type ButtonGroupOptionsType = TButton[];
 
-const buttonGroupOptions: ButtonGroupOptionsType = [
-    {
-        text: "Mark all as complete",
-    },
-    {
-        text: "Mark all as incomplete",
-    },
-    {
-        text: "Reset to initial",
-    },
-    {
-        text: "Remove all items",
-    },
-];
+const buttonGroupOptions: ButtonGroupOptionsType = BUTTON_GROUP_OPTIONS_TYPE;
 
 export default function ButtonGroup() {
     return (
