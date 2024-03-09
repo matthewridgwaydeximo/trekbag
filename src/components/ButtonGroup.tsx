@@ -1,8 +1,10 @@
 import Button from "./Button";
 
-type ButtonGroupOptionsType = {
+type Button = {
     text: string;
-}[];
+};
+
+type ButtonGroupOptionsType = Button[];
 
 const buttonGroupOptions: ButtonGroupOptionsType = [
     {
