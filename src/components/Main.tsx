@@ -1,13 +1,19 @@
 import Header from "./Header";
 import ItemList from "./ItemList";
 import Sidebar from "./Sidebar";
+import { TItem } from "../lib/types";
 
-export default function Main() {
+type TMainProps = {
+    items: TItem[] | undefined;
+    handleAddItem: (item: string) => void;
+};
+
+export default function Main({ items, handleAddItem }: TMainProps) {
     return (
         <main>
             <Header />
-            <ItemList />
-            <Sidebar />
+            <ItemList items={items} />
+            <Sidebar handleAddItem={handleAddItem} />
         </main>
     );
 }

@@ -1,10 +1,14 @@
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
 
-export default function Sidebar() {
+type TSidebarProps = {
+    handleAddItem: (item: string) => void;
+};
+
+export default function Sidebar({ handleAddItem }: TSidebarProps) {
     return (
         <div className="sidebar">
-            <AddItemForm />
+            <AddItemForm onAddItem={handleAddItem} />
             <ButtonGroup />
         </div>
     );
