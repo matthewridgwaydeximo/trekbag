@@ -1,7 +1,6 @@
 import Checkbox from "./Checkbox";
 import Label from "./Label";
 import { TItem } from "../lib/types";
-import { INITIAL_ITEM_LIST } from "../lib/constants";
 
 type UnorderedListProps = {
     items: TItem[] | undefined;
@@ -11,7 +10,7 @@ type ItemProps = {
     children: React.ReactNode;
 };
 
-export default function UnorderedList({ items = INITIAL_ITEM_LIST }: UnorderedListProps) {
+export default function UnorderedList({ items }: UnorderedListProps) {
     return (
         <ul>
             {items &&
