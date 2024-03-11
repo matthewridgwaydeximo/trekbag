@@ -1,19 +1,20 @@
 import Header from "./Header";
 import ItemList from "./ItemList";
 import Sidebar from "./Sidebar";
-import { TItem } from "../lib/types";
+import { TItem, TSecondaryEvents } from "../lib/types";
 
 type TMainProps = {
     items: TItem[] | undefined;
     handleAddItem: (item: string) => void;
+    handleSecondaryEvents: TSecondaryEvents | undefined;
 };
 
-export default function Main({ items, handleAddItem }: TMainProps) {
+export default function Main({ items, handleAddItem, handleSecondaryEvents }: TMainProps) {
     return (
         <main>
             <Header />
             <ItemList items={items} />
-            <Sidebar handleAddItem={handleAddItem} />
+            <Sidebar handleAddItem={handleAddItem} handleSecondaryEvents={handleSecondaryEvents} />
         </main>
     );
 }

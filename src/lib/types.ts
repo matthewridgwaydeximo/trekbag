@@ -6,4 +6,12 @@ export type TItem = {
 
 export type TButton = {
     text: string;
+    onClick?: () => void;
+};
+
+export type TSecondaryEvents = {
+    onMarkAllAsComplete: () => void;
+    onMarkAllAsInComplete: () => void;
+    onResetToInitial: () => void;
+    onRemoveAllItems: () => void;
 };
