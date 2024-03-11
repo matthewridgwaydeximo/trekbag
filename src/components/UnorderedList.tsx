@@ -14,11 +14,11 @@ export default function UnorderedList({ items }: UnorderedListProps) {
     return (
         <ul>
             {items &&
-                items.map(({ id, name }) => {
+                items.map(({ id, name, isCompleted }) => {
                     return (
                         <Item key={id}>
                             <Label>
-                                <Checkbox />
+                                <Checkbox checked={isCompleted} />
                                 {name}
                             </Label>
                             <RemoveButton />
