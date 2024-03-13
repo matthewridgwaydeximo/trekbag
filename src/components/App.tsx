@@ -2,6 +2,9 @@ import BackgroundHeading from "./BackgroundHeading";
 import Footer from "./Footer";
 import Main from "./Main";
 import { useSecondaryEvents } from "../lib/hooks/useSecondaryEvents";
+import Header from "./Header";
+import ItemList from "./ItemList";
+import Sidebar from "./Sidebar";
 
 export default function App() {
     const { items, setItems, secondaryEvents } = useSecondaryEvents();
@@ -18,7 +21,11 @@ export default function App() {
     return (
         <>
             <BackgroundHeading />
-            <Main items={items} handleAddItem={handleAddItem} handleSecondaryEvents={secondaryEvents} />
+            <Main>
+                <Header />
+                <ItemList items={items} />
+                <Sidebar handleAddItem={handleAddItem} handleSecondaryEvents={secondaryEvents} />
+            </Main>
             <Footer />
         </>
     );
