@@ -20,12 +20,23 @@ export default function App() {
         setItems((prev) => [item, ...prev]);
     };
 
+    const handleCheckboxChange = (id: number) => {
+        setItems((prev) =>
+            prev.map((item) => {
+                if (item.id === id) {
+                    return { ...item, isCompleted: !item.isCompleted };
+                }
+                return item;
+            })
+        );
+    };
+
     return (
         <>
             <BackgroundHeading />
             <Main>
                 <Header />
-                <ItemList items={items} />
+                <ItemList items={items} handleCheckboxChange={handleCheckboxChange} />
                 <Sidebar>
                     <AddItemForm onAddItem={handleAddItem} />
                     <ButtonGroup onSecondaryEvents={secondaryEvents} />
