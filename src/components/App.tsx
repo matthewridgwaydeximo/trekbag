@@ -11,8 +11,6 @@ import UnorderedList from "./UnorderedList";
 export default function App() {
     const { items, setItems, secondaryEvents } = useSecondaryEvents();
 
-    console.log("test" === new String("test"));
-
     const handleAddItem = (name: string) => {
         const item = {
             id: new Date().getMilliseconds(),
