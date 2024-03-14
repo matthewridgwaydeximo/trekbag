@@ -4,13 +4,14 @@ import { TItem } from "../lib/types";
 
 type UnorderedListProps = {
     items: TItem[] | undefined;
+    onCheckboxChange: (id: number) => void;
 };
 
 type ItemProps = {
     children: React.ReactNode;
 };
 
-export default function UnorderedList({ items }: UnorderedListProps) {
+export default function UnorderedList({ items, onCheckboxChange }: UnorderedListProps) {
     return (
         <ul>
             {items &&
@@ -18,7 +19,7 @@ export default function UnorderedList({ items }: UnorderedListProps) {
                     return (
                         <Item key={id}>
                             <Label>
-                                <Checkbox checked={isCompleted} />
+                                <Checkbox checked={isCompleted} onChange={() => onCheckboxChange(id)} />
                                 {name}
                             </Label>
                             <RemoveButton />
