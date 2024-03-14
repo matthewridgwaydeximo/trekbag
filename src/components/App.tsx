@@ -3,13 +3,15 @@ import Footer from "./Footer";
 import Main from "./Main";
 import { useSecondaryEvents } from "../lib/hooks/useSecondaryEvents";
 import Header from "./Header";
-import ItemList from "./ItemList";
 import Sidebar from "./Sidebar";
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
+import UnorderedList from "./UnorderedList";
 
 export default function App() {
     const { items, setItems, secondaryEvents } = useSecondaryEvents();
+
+    console.log("test" === new String("test"));
 
     const handleAddItem = (name: string) => {
         const item = {
@@ -31,12 +33,16 @@ export default function App() {
         );
     };
 
+    const handleRemoveItem = (id: number) => {
+        setItems((prev) => prev.filter((item) => item.id !== id));
+    };
+
     return (
         <>
             <BackgroundHeading />
             <Main>
                 <Header />
-                <ItemList items={items} handleCheckboxChange={handleCheckboxChange} />
+                <UnorderedList items={items} onCheckboxChange={handleCheckboxChange} handleRemoveItem={handleRemoveItem} />;
                 <Sidebar>
                     <AddItemForm onAddItem={handleAddItem} />
                     <ButtonGroup onSecondaryEvents={secondaryEvents} />

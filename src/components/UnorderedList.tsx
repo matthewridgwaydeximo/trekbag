@@ -2,16 +2,22 @@ import Checkbox from "./Checkbox";
 import Label from "./Label";
 import { TItem } from "../lib/types";
 
-type UnorderedListProps = {
+type TUnorderedListProps = {
     items: TItem[] | undefined;
     onCheckboxChange: (id: number) => void;
+    handleRemoveItem: (id: number) => void;
 };
 
-type ItemProps = {
+type TItemProps = {
     children: React.ReactNode;
 };
 
-export default function UnorderedList({ items, onCheckboxChange }: UnorderedListProps) {
+type TRemoveButtonProps = {
+    id: number;
+    onRemoveItem: (id: number) => void;
+};
+
+export default function UnorderedList({ items, onCheckboxChange, handleRemoveItem }: TUnorderedListProps) {
     return (
         <ul>
             {items &&
@@ -22,7 +28,7 @@ export default function UnorderedList({ items, onCheckboxChange }: UnorderedList
                                 <Checkbox checked={isCompleted} onChange={() => onCheckboxChange(id)} />
                                 {name}
                             </Label>
-                            <RemoveButton />
+                            <RemoveButton id={id} onRemoveItem={handleRemoveItem} />
                         </Item>
                     );
                 })}
@@ -30,10 +36,10 @@ export default function UnorderedList({ items, onCheckboxChange }: UnorderedList
     );
 }
 
-function Item({ children }: ItemProps) {
+function Item({ children }: TItemProps) {
     return <li className="item">{children}</li>;
 }
 
-function RemoveButton() {
-    return <button>❌</button>;
+function RemoveButton({ id, onRemoveItem }: TRemoveButtonProps) {
+    return <button onClick={() => onRemoveItem(id)}>❌</button>;
 }
