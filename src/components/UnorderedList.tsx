@@ -19,7 +19,7 @@ type TRemoveButtonProps = {
 
 export default function UnorderedList({ items, onCheckboxChange, handleRemoveItem }: TUnorderedListProps) {
     return (
-        <ul>
+        <ul className="item-list">
             {items &&
                 items.map(({ id, name, isCompleted }) => {
                     return (
