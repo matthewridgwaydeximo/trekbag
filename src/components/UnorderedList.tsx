@@ -1,6 +1,8 @@
 import Checkbox from "./Checkbox";
 import Label from "./Label";
 import { TItem } from "../lib/types";
+import { IsNullOrEmpty } from "../lib/helper";
+import EmptyView from "./EmptyView";
 
 type TUnorderedListProps = {
     items: TItem[] | undefined;
@@ -20,6 +22,8 @@ type TRemoveButtonProps = {
 export default function UnorderedList({ items, onCheckboxChange, handleRemoveItem }: TUnorderedListProps) {
     return (
         <ul className="item-list">
+            {IsNullOrEmpty(items) && <EmptyView />}
+
             {items &&
                 items.map(({ id, name, isCompleted }) => {
                     return (
