@@ -40,7 +40,7 @@ export default function App() {
             <BackgroundHeading />
             <Main>
                 <Header />
-                <UnorderedList items={items} onCheckboxChange={handleCheckboxChange} handleRemoveItem={handleRemoveItem} />;
+                <UnorderedList items={items} onCheckboxChange={handleCheckboxChange} handleRemoveItem={handleRemoveItem} />
                 <Sidebar>
                     <AddItemForm onAddItem={handleAddItem} />
                     <ButtonGroup onSecondaryEvents={secondaryEvents} />
