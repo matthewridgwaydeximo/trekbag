@@ -11,6 +11,9 @@ import UnorderedList from "./UnorderedList";
 export default function App() {
     const { items, setItems, secondaryEvents } = useSecondaryEvents();
 
+    const numberOfItemsPacked = items.filter((item) => item.isCompleted).length;
+    const totalNumberOfItems = items.length;
+
     const handleAddItem = (name: string) => {
         const item = {
             id: new Date().getMilliseconds(),
@@ -39,7 +42,7 @@ export default function App() {
         <>
             <BackgroundHeading />
             <Main>
-                <Header />
+                <Header numberOfItemsPacked={numberOfItemsPacked} totalNumberOfItems={totalNumberOfItems} />
                 <UnorderedList items={items} onCheckboxChange={handleCheckboxChange} handleRemoveItem={handleRemoveItem} />
                 <Sidebar>
                     <AddItemForm onAddItem={handleAddItem} />

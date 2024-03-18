@@ -1,7 +1,9 @@
-export default function Counter() {
+import { TCounterProps } from "../lib/types";
+
+export default function Counter({ numberOfItemsPacked, totalNumberOfItems }: TCounterProps) {
     return (
         <p>
-            <strong>1</strong>/3 items packed
+            <strong>{numberOfItemsPacked}</strong>/{totalNumberOfItems} items packed
         </p>
     );
 }

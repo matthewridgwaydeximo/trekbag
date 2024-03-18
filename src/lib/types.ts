@@ -15,3 +15,8 @@ export type TSecondaryEvents = {
     onResetToInitial: () => void;
     onRemoveAllItems: () => void;
 };
+
+export type TCounterProps = {
+    numberOfItemsPacked: number;
+    totalNumberOfItems: number;
+};
