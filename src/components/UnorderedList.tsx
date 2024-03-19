@@ -3,6 +3,8 @@ import Label from "./Label";
 import { TItem } from "../lib/types";
 import { IsNullOrEmpty } from "../lib/helper";
 import EmptyView from "./EmptyView";
+import Select from "react-select";
+import { SELECT_OPTIONS } from "../lib/constants";
 
 type TUnorderedListProps = {
     items: TItem[] | undefined;
@@ -23,6 +25,12 @@ export default function UnorderedList({ items, onCheckboxChange, handleRemoveIte
     return (
         <ul className="item-list">
             {IsNullOrEmpty(items) && <EmptyView />}
+
+            {!IsNullOrEmpty(items) && (
+                <section className="sorting">
+                    <Select options={SELECT_OPTIONS} />
+                </section>
+            )}
 
             {items &&
                 items.map(({ id, name, isCompleted }) => {
