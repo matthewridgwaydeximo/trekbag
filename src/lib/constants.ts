@@ -10,4 +10,4 @@ export const SELECT_OPTIONS = [
     { value: "default", label: "Sort by default" },
     { value: "packed", label: "Sort by packed" },
     { value: "unpacked", label: "Sort by unpacked" },
-] as const;
+];
