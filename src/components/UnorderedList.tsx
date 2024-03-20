@@ -3,6 +3,9 @@ import Label from "./Label";
 import { TItem } from "../lib/types";
 import { IsNullOrEmpty } from "../lib/helper";
 import EmptyView from "./EmptyView";
+import Select from "react-select";
+import { SELECT_OPTIONS } from "../lib/constants";
+import { useState } from "react";
 
 type TUnorderedListProps = {
     items: TItem[] | undefined;
@@ -20,12 +23,34 @@ type TRemoveButtonProps = {
 };
 
 export default function UnorderedList({ items, onCheckboxChange, handleRemoveItem }: TUnorderedListProps) {
+    const [sortBy, setSortBy] = useState<string | undefined>("default");
+
+    const [defaultValue] = SELECT_OPTIONS;
+
+    const sortedItems = Object.assign([], items).sort((a: TItem, b: TItem) => {
+        if (sortBy === "packed") {
+            return Number(b.isCompleted) - Number(a.isCompleted);
+        }
+
+        if (sortBy === "unpacked") {
+            return Number(a.isCompleted) - Number(b.isCompleted);
+        }
+
+        return 0;
+    });
+
     return (
         <ul className="item-list">
-            {IsNullOrEmpty(items) && <EmptyView />}
+            {IsNullOrEmpty(sortedItems) && <EmptyView />}
 
-            {items &&
-                items.map(({ id, name, isCompleted }) => {
+            {!IsNullOrEmpty(sortedItems) && (
+                <section className="sorting">
+                    <Select options={SELECT_OPTIONS} onChange={(e) => setSortBy(e?.value)} defaultValue={defaultValue} />
+                </section>
+            )}
+
+            {sortedItems &&
+                sortedItems.map(({ id, name, isCompleted }) => {
                     return (
                         <Item key={id}>
                             <Label>
