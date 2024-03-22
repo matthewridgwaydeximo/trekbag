@@ -27,6 +27,7 @@ export default function UnorderedList({ items, onCheckboxChange, handleRemoveIte
 
     const [defaultValue] = SELECT_OPTIONS;
 
+    // TODO: Use useMemo to memoize the sortedItems
     const sortedItems = Object.assign([], items).sort((a: TItem, b: TItem) => {
         if (sortBy === "packed") {
             return Number(b.isCompleted) - Number(a.isCompleted);
