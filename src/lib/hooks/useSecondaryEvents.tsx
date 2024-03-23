@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { INITIAL_ITEM_LIST } from "../constants";
-import { TSecondaryEvents } from "../types";
+import { TItem, TSecondaryEvents } from "../types";
+import { IsNullOrEmpty } from "../helper";
 
 export function useSecondaryEvents() {
-    const [items, setItems] = useState(INITIAL_ITEM_LIST);
+    const itemsFromLocalStorage: TItem[] = JSON.parse(localStorage.getItem("items") || "[]");
+    const [items, setItems] = useState(() => (IsNullOrEmpty(itemsFromLocalStorage) ? INITIAL_ITEM_LIST : itemsFromLocalStorage));
+
+    useEffect(() => {
+        localStorage.setItem("items", JSON.stringify(items));
+    }, [items]);
 
     const handleMarkAllAsComplete = () => {
         setItems((prev) => prev.map((item) => ({ ...item, isCompleted: true })));
