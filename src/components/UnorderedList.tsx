@@ -5,7 +5,7 @@ import { IsNullOrEmpty } from "../lib/helper";
 import EmptyView from "./EmptyView";
 import Select from "react-select";
 import { SELECT_OPTIONS } from "../lib/constants";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type TUnorderedListProps = {
     items: TItem[] | undefined;
@@ -27,18 +27,19 @@ export default function UnorderedList({ items, onCheckboxChange, handleRemoveIte
 
     const [defaultValue] = SELECT_OPTIONS;
 
-    // TODO: Use useMemo to memoize the sortedItems
-    const sortedItems = Object.assign([], items).sort((a: TItem, b: TItem) => {
-        if (sortBy === "packed") {
-            return Number(b.isCompleted) - Number(a.isCompleted);
-        }
+    const sortedItems = useMemo(() => {
+        return Object.assign([], items).sort((a: TItem, b: TItem) => {
+            if (sortBy === "packed") {
+                return Number(b.isCompleted) - Number(a.isCompleted);
+            }
 
-        if (sortBy === "unpacked") {
-            return Number(a.isCompleted) - Number(b.isCompleted);
-        }
+            if (sortBy === "unpacked") {
+                return Number(a.isCompleted) - Number(b.isCompleted);
+            }
 
-        return 0;
-    });
+            return 0;
+        });
+    }, [items, sortBy]);
 
     return (
         <ul className="item-list">
