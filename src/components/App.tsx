@@ -1,53 +1,26 @@
 import BackgroundHeading from "./BackgroundHeading";
 import Footer from "./Footer";
 import Main from "./Main";
-import { useSecondaryEvents } from "../lib/hooks/useSecondaryEvents";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
 import UnorderedList from "./UnorderedList";
+import ItemsContextProvider from "../context/ItemsContextProvider";
 
 export default function App() {
-    const { items, setItems, secondaryEvents } = useSecondaryEvents();
-
-    const numberOfItemsPacked = items.filter((item) => item.isCompleted).length;
-    const totalNumberOfItems = items.length;
-
-    const handleAddItem = (name: string) => {
-        const item = {
-            id: new Date().getMilliseconds(),
-            name: name,
-            isCompleted: false,
-        };
-        setItems((prev) => [item, ...prev]);
-    };
-
-    const handleCheckboxChange = (id: number) => {
-        setItems((prev) =>
-            prev.map((item) => {
-                if (item.id === id) {
-                    return { ...item, isCompleted: !item.isCompleted };
-                }
-                return item;
-            })
-        );
-    };
-
-    const handleRemoveItem = (id: number) => {
-        setItems((prev) => prev.filter((item) => item.id !== id));
-    };
-
     return (
         <>
             <BackgroundHeading />
             <Main>
-                <Header numberOfItemsPacked={numberOfItemsPacked} totalNumberOfItems={totalNumberOfItems} />
-                <UnorderedList items={items} onCheckboxChange={handleCheckboxChange} handleRemoveItem={handleRemoveItem} />
-                <Sidebar>
-                    <AddItemForm onAddItem={handleAddItem} />
-                    <ButtonGroup onSecondaryEvents={secondaryEvents} />
-                </Sidebar>
+                <ItemsContextProvider>
+                    <Header />
+                    <UnorderedList />
+                    <Sidebar>
+                        <AddItemForm />
+                        <ButtonGroup />
+                    </Sidebar>
+                </ItemsContextProvider>
             </Main>
             <Footer />
         </>

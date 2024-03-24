@@ -1,8 +1,10 @@
-import { TCounterProps } from "../lib/types";
+import useItemsContext from "../lib/hooks/useItemsContext";
 import Counter from "./Counter";
 import Logo from "./Logo";
 
-export default function Header({ numberOfItemsPacked, totalNumberOfItems }: TCounterProps) {
+export default function Header() {
+    const { numberOfItemsPacked, totalNumberOfItems } = useItemsContext();
+
     return (
         <header>
             <Logo />

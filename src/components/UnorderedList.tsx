@@ -6,12 +6,7 @@ import EmptyView from "./EmptyView";
 import Select from "react-select";
 import { SELECT_OPTIONS } from "../lib/constants";
 import { useMemo, useState } from "react";
-
-type TUnorderedListProps = {
-    items: TItem[] | undefined;
-    onCheckboxChange: (id: number) => void;
-    handleRemoveItem: (id: number) => void;
-};
+import useItemsContext from "../lib/hooks/useItemsContext";
 
 type TItemProps = {
     children: React.ReactNode;
@@ -22,7 +17,9 @@ type TRemoveButtonProps = {
     onRemoveItem: (id: number) => void;
 };
 
-export default function UnorderedList({ items, onCheckboxChange, handleRemoveItem }: TUnorderedListProps) {
+export default function UnorderedList() {
+    const { items, handleCheckboxChange, handleRemoveItem } = useItemsContext();
+
     const [sortBy, setSortBy] = useState<string | undefined>("default");
 
     const [defaultValue] = SELECT_OPTIONS;
@@ -56,7 +53,7 @@ export default function UnorderedList({ items, onCheckboxChange, handleRemoveIte
                     return (
                         <Item key={id}>
                             <Label>
-                                <Checkbox checked={isCompleted} onChange={() => onCheckboxChange(id)} />
+                                <Checkbox checked={isCompleted} onChange={() => handleCheckboxChange(id)} />
                                 {name}
                             </Label>
                             <RemoveButton id={id} onRemoveItem={handleRemoveItem} />

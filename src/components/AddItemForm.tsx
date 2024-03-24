@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 import { IsNullOrEmpty } from "../lib/helper";
+import useItemsContext from "../lib/hooks/useItemsContext";
 
-type AddItemFormProps = {
-    onAddItem: (name: string) => void;
-};
+export default function AddItemForm() {
+    const { handleAddItem } = useItemsContext();
 
-export default function AddItemForm({ onAddItem }: AddItemFormProps) {
     const [item, setItem] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +23,7 @@ export default function AddItemForm({ onAddItem }: AddItemFormProps) {
             return;
         }
 
-        onAddItem(item);
+        handleAddItem(item);
         setItem("");
         inputRef.current?.focus();
     };

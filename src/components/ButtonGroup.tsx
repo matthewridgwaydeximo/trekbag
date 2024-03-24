@@ -1,13 +1,10 @@
 import Button from "./Button";
-import { TSecondaryEvents } from "../lib/types";
 import { useButtonGroup } from "../lib/hooks/useButtonGroup";
+import useItemsContext from "../lib/hooks/useItemsContext";
 
-type TButtonGroupProps = {
-    onSecondaryEvents: TSecondaryEvents | undefined;
-};
-
-export default function ButtonGroup({ onSecondaryEvents }: TButtonGroupProps) {
-    const { buttonGroupOptions } = useButtonGroup({ onSecondaryEvents });
+export default function ButtonGroup() {
+    const { secondaryEvents } = useItemsContext();
+    const { buttonGroupOptions } = useButtonGroup({ onSecondaryEvents: secondaryEvents });
 
     return (
         <section className="button-group">

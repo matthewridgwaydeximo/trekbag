@@ -1,27 +1,75 @@
-# React + TypeScript + Vite
+# TrekBag
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
 
-Currently, two official plugins are available:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## Expanding the ESLint configuration
+What things you need to install the software and how to install them:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-   Node.js
+-   npm
+-   Docker Desktop (Optional)
 
-- Configure the top-level `parserOptions` property like this:
+### Installing
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+A step by step series of examples that tell you how to get a development environment running:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repo
+    ```
+    git clone https://github.com/matthewridgwaydeximo/trekbag.git
+    ```
+2. Install NPM packages
+    ```
+    npm install
+    ```
+3. Start the development server
+    ```
+    npm run dev
+    ```
+
+Now, you should be able to see the application running at `localhost:3000` (or whatever port you have set) in your browser.
+
+### Docker
+
+If you prefer to use Docker, follow these steps:
+
+#### Building the Docker Image
+
+1. Build the Docker image from the Dockerfile:
+
+    ```
+    docker build -t trekbag .
+    ```
+
+2. Once the image is built, you can run a container from it:
+
+    ```
+    docker run -d -p 3000:5000 trekbag
+    ```
+
+Now, you should be able to see the application running at `localhost:3000` in your browser.
+
+#### Using Docker Compose
+
+If you have a `docker-compose.yml` file, you can use Docker Compose to manage your application:
+
+1. Start the services defined in the `docker-compose.yml` file. If there are changes in the Dockerfile that require a new build, you need to remove the cached build and apply `--build` again. Here's how to do it:
+
+    - First, stop and remove the containers:
+        ```
+        docker-compose down
+        ```
+    - Remove the recent build of the Docker image:
+        ```
+        docker image rm -f ${image_name}
+        ```
+    - Then, build the services again with the `--build` option to ensure the changes in the Dockerfile are taken into account. Use `-d` to run them in the background:
+        ```
+        docker-compose up -d --build
+        ```
+
+    This will rebuild your image and start the containers.
+
+Now, your application and all its services should be running.
