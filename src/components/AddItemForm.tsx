@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 import { IsNullOrEmpty } from "../lib/helper";
-import useItemsContext from "../lib/hooks/useItemsContext";
+import { useItemsStore } from "../stores/itemsStore";
 
 export default function AddItemForm() {
-    const { handleAddItem } = useItemsContext();
+    const addItem = useItemsStore((state) => state.addItem);
 
     const [item, setItem] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
@@ -23,7 +23,7 @@ export default function AddItemForm() {
             return;
         }
 
-        handleAddItem(item);
+        addItem(item);
         setItem("");
         inputRef.current?.focus();
     };
