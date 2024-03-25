@@ -6,7 +6,7 @@ import EmptyView from "./EmptyView";
 import Select from "react-select";
 import { SELECT_OPTIONS } from "../lib/constants";
 import { useMemo, useState } from "react";
-import useItemsContext from "../lib/hooks/useItemsContext";
+import { useItemsStore } from "../stores/itemsStore";
 
 type TItemProps = {
     children: React.ReactNode;
@@ -18,7 +18,9 @@ type TRemoveButtonProps = {
 };
 
 export default function UnorderedList() {
-    const { items, handleCheckboxChange, handleRemoveItem } = useItemsContext();
+    const items = useItemsStore((state) => state.items);
+    const checkboxChange = useItemsStore((state) => state.checkboxChange);
+    const removeItem = useItemsStore((state) => state.removeItem);
 
     const [sortBy, setSortBy] = useState<string | undefined>("default");
 
@@ -29,11 +31,9 @@ export default function UnorderedList() {
             if (sortBy === "packed") {
                 return Number(b.isCompleted) - Number(a.isCompleted);
             }
-
             if (sortBy === "unpacked") {
                 return Number(a.isCompleted) - Number(b.isCompleted);
             }
-
             return 0;
         });
     }, [items, sortBy]);
@@ -53,10 +53,10 @@ export default function UnorderedList() {
                     return (
                         <Item key={id}>
                             <Label>
-                                <Checkbox checked={isCompleted} onChange={() => handleCheckboxChange(id)} />
+                                <Checkbox checked={isCompleted} onChange={() => checkboxChange(id)} />
                                 {name}
                             </Label>
-                            <RemoveButton id={id} onRemoveItem={handleRemoveItem} />
+                            <RemoveButton id={id} onRemoveItem={removeItem} />
                         </Item>
                     );
                 })}
