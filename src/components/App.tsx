@@ -1,11 +1,4 @@
-import BackgroundHeading from "./BackgroundHeading";
-import Footer from "./Footer";
-import Main from "./Main";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import AddItemForm from "./AddItemForm";
-import ButtonGroup from "./ButtonGroup";
-import UnorderedList from "./UnorderedList";
+import { BackgroundHeading, Footer, Main, Header, Sidebar, AddItemForm, ButtonGroup, UnorderedList } from "../lib/exports";
 
 export default function App() {
     return (

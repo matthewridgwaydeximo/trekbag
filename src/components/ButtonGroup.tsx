@@ -1,6 +1,5 @@
 import Button from "./Button";
 import { useButtonGroup } from "../lib/hooks/useButtonGroup";
-import useItemsContext from "../lib/hooks/useItemsContext";
 import { useItemsStore } from "../stores/itemsStore";
 import { TSecondaryEvents } from "../lib/types";
 
